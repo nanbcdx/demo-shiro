@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wph.demoshiro.mapper.PermissionMapper">
+
+
+    <select id="selectByRoleIds" resultType="string">
+        select p.permission from role_permission rm inner join permission p on rm.permission_id=p.id where rm.role_id in (
+        <foreach collection="roleIds" separator="," item="roleId">
+            #{roleId}
+        </foreach>
+        )
+
+    </select>
+</mapper>
